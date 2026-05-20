@@ -1,88 +1,233 @@
-
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="nl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="/favicon.png" type="image/png" sizes="32x32">
-  <title>Leon Mol</title>
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>leonmol.nl v3.1 beta</title>
   <style>
     body {
-      font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-      font-size: 1rem;
-      line-height: 1.75;
       margin: 0;
-      color: #222;
-      background-color: #f3f4f6;
-      color-scheme: light dark;
+      font-family: "Comic Sans MS", Tahoma, Verdana, sans-serif;
+      background: #008080;
+      color: #000;
     }
 
-    .container {
-      max-width: 45ch;
-      margin: 0 auto;
-      padding: 2rem;
+    .page {
+      max-width: 900px;
+      margin: 25px auto;
+      background: #c0c0c0;
+      border: 3px outset #fff;
+      box-shadow: 8px 8px 0 #000;
+    }
+
+    .titlebar {
+      background: linear-gradient(90deg, #000080, #1084d0);
+      color: #fff;
+      padding: 6px 10px;
+      font-family: Tahoma, sans-serif;
+      font-weight: bold;
       display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
+      justify-content: space-between;
     }
 
-    img {
-      border-radius: 8px;
-      margin-bottom: 0.5rem;
+    .window-buttons span {
+      display: inline-block;
+      background: #c0c0c0;
+      color: #000;
+      border: 2px outset #fff;
+      width: 20px;
+      height: 18px;
+      text-align: center;
+      line-height: 16px;
+      margin-left: 3px;
+      font-size: 12px;
+    }
+
+    .content {
+      padding: 20px;
+      text-align: center;
     }
 
     h1 {
-      margin: 0;
-      font-size: 1.5rem;
-      line-height: 1.25;
+      color: yellow;
+      background: purple;
+      padding: 12px;
+      text-shadow: 2px 2px #000;
+      border: 4px ridge lime;
+      animation: blink 1s infinite;
     }
-    
-    p {
-      margin: 0;
-      text-wrap: pretty;
+
+    @keyframes blink {
+      50% { opacity: 0.55; }
+    }
+
+    marquee {
+      background: #000;
+      color: lime;
+      padding: 8px;
+      border: 2px inset #fff;
+      margin-bottom: 20px;
+    }
+
+    .construction {
+      font-size: 42px;
+      margin: 10px;
+      animation: spin 3s linear infinite;
+      display: inline-block;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .box {
+      background: #fff;
+      border: 3px inset #808080;
+      padding: 15px;
+      margin: 18px auto;
+      max-width: 600px;
+    }
+
+    .buttons button {
+      font-family: Tahoma, sans-serif;
+      font-weight: bold;
+      margin: 6px;
+      padding: 10px 16px;
+      background: #c0c0c0;
+      border: 3px outset #fff;
+      cursor: pointer;
+    }
+
+    .buttons button:active {
+      border: 3px inset #808080;
+    }
+
+    .counter {
+      display: inline-block;
+      background: #000;
+      color: red;
+      font-family: monospace;
+      font-size: 26px;
+      padding: 6px 12px;
+      letter-spacing: 4px;
+      border: 3px inset #fff;
+    }
+
+    .status {
+      font-family: monospace;
+      background: #000;
+      color: #00ff00;
+      padding: 12px;
+      text-align: left;
+      max-width: 520px;
+      margin: 20px auto;
+      border: 2px solid #00ff00;
+    }
+
+    .footer {
+      font-size: 12px;
+      background: #808080;
+      padding: 10px;
+      border-top: 2px inset #fff;
+      text-align: center;
     }
 
     a {
-      color: inherit;
-      text-underline-offset: 2px;
-      text-decoration-style: dotted;
-    }
-
-    a:hover {
-      text-decoration-style: solid;
-    }
-
-    .updated {
-      font-size: 0.875rem;
-      opacity: 0.6;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      body {
-        color: #fff;
-        background-color: #222;
-      }
-    }
-
-    img {
-      opacity: 0.9
+      color: blue;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <!-- <img src="assets/image/leon.jpg" alt="Leon Mol"> -->
-    <h1>Hi, I&rsquo;m Leon.</h1>
-    <p>I&rsquo;m currently working as a DevOps engineer at <a href="https://svb.nl" target="_blank">Sociale Verzekeringsbank</a>. Previously, I worked at <a href="https://ing.nl" target="_blank">ING Bank</a>.</p>
-    <p>On the side, I&rsquo;m running my own small web development agency called <a href="https://talpaq.com" target="_blank">Talpaq</a>. 
-    <p>You can find me online on <a href="https://instagram.com/laemol" target="_blank">Instagram</a> and <a href="https://github.com/laemol" target="_blank">GitHub</a> or you can contact me at <span id="email"></span></p>
-    <script>
-      const user = "hoi";
-      const domain = "leonmol.nl";
-      document.getElementById("email").innerHTML = `<a href="mailto:${user}@${domain}">${user}@${domain}</a>`;
-    </script>
-    <p class="updated">Updated June 2025</p>
+
+  <div class="page">
+    <div class="titlebar">
+      <span>leonmol.nl - Internet Explorer Edition</span>
+      <div class="window-buttons">
+        <span>_</span><span>□</span><span>X</span>
+      </div>
+    </div>
+
+    <div class="content">
+      <marquee>
+        *** WELKOM INTERNET SURFER *** DEZE WEBSITE IS GEOPTIMALISEERD VOOR 1024x768 ***
+      </marquee>
+
+      <h1>🔥 WELKOM OP LEONMOL.NL 🔥</h1>
+
+      <div class="construction">🚧</div>
+      <p><b>Deze website is permanent onder constructie.</b></p>
+
+      <div class="box">
+        <p>U bent bezoeker nummer:</p>
+        <div class="counter" id="counter">000042</div>
+        <p><small>Deze teller is ongeveer betrouwbaar.</small></p>
+      </div>
+
+      <div class="buttons">
+        <button onclick="doSomething()">ENTER</button>
+        <button onclick="fakeGuestbook()">GASTENBOEK</button>
+        <button onclick="downloadRam()">DOWNLOAD MEER RAM</button>
+        <button onclick="contact()">CONTACT</button>
+      </div>
+
+      <div class="status">
+        <div>&gt; systeemstatus leonmol.nl</div>
+        <div>&gt; koffie: operationeel</div>
+        <div>&gt; productiviteit: wisselvallig</div>
+        <div>&gt; website: draait tegen beter weten in</div>
+        <div>&gt; laatste update: ergens rond nu</div>
+      </div>
+
+      <div class="box">
+        <p>
+          <img alt="new" src="https://media.giphy.com/media/l0HlNaQ6gWfllcjDO/giphy.gif" width="80">
+        </p>
+        <p><b>NIEUW:</b> deze pagina bevat nu bijna inhoud.</p>
+      </div>
+
+      <p>
+        <a href="#" onclick="alert('Geheime pagina niet gevonden. Heel geheim dus.'); return false;">
+          Klik hier voor de geheime pagina
+        </a>
+      </p>
+    </div>
+
+    <div class="footer">
+      © sinds ongeveer een tijdje · Best viewed on a beige computer · Geen cookies, wel kruimels
+    </div>
   </div>
+
+  <script>
+    const messages = [
+      "U heeft zojuist op ENTER gedrukt. Dapper.",
+      "Toegang geweigerd. Niet persoonlijk bedoeld.",
+      "Welkom in het gedeelte dat nog niet bestaat.",
+      "Deze knop was vooral decoratief.",
+      "Even laden... grapje."
+    ];
+
+    function doSomething() {
+      alert(messages[Math.floor(Math.random() * messages.length)]);
+    }
+
+    function fakeGuestbook() {
+      alert("Het gastenboek is vol. Er heeft nog niemand iets geschreven.");
+    }
+
+    function downloadRam() {
+      alert("Download gestart: extra_weekend.exe");
+    }
+
+    function contact() {
+      alert("Contactformulier tijdelijk kapot sinds 1998.");
+    }
+
+    const counter = document.getElementById("counter");
+    const randomVisitors = 42000 + Math.floor(Math.random() * 999);
+    counter.textContent = String(randomVisitors).padStart(6, "0");
+  </script>
+
 </body>
 </html>
