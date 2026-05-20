@@ -2,231 +2,167 @@
 <html lang="nl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>leonmol.nl v3.1 beta</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>leonmol.nl</title>
+
   <style>
+    :root {
+      --bg: #0f1115;
+      --text: #f5f5f5;
+      --muted: #8b8f98;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
-      font-family: "Comic Sans MS", Tahoma, Verdana, sans-serif;
-      background: #008080;
-      color: #000;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+
+      background:
+        radial-gradient(circle at top, #202638 0%, transparent 40%),
+        var(--bg);
+
+      color: var(--text);
+
+      font-family:
+        Inter,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
     }
 
-    .page {
-      max-width: 900px;
-      margin: 25px auto;
-      background: #c0c0c0;
-      border: 3px outset #fff;
-      box-shadow: 8px 8px 0 #000;
-    }
-
-    .titlebar {
-      background: linear-gradient(90deg, #000080, #1084d0);
-      color: #fff;
-      padding: 6px 10px;
-      font-family: Tahoma, sans-serif;
-      font-weight: bold;
-      display: flex;
-      justify-content: space-between;
-    }
-
-    .window-buttons span {
-      display: inline-block;
-      background: #c0c0c0;
-      color: #000;
-      border: 2px outset #fff;
-      width: 20px;
-      height: 18px;
+    main {
       text-align: center;
-      line-height: 16px;
-      margin-left: 3px;
-      font-size: 12px;
+      padding: 40px;
     }
 
-    .content {
-      padding: 20px;
-      text-align: center;
-    }
+    .label {
+      margin-bottom: 16px;
 
-    h1 {
-      color: yellow;
-      background: purple;
-      padding: 12px;
-      text-shadow: 2px 2px #000;
-      border: 4px ridge lime;
-      animation: blink 1s infinite;
-    }
+      color: var(--muted);
 
-    @keyframes blink {
-      50% { opacity: 0.55; }
-    }
-
-    marquee {
-      background: #000;
-      color: lime;
-      padding: 8px;
-      border: 2px inset #fff;
-      margin-bottom: 20px;
-    }
-
-    .construction {
-      font-size: 42px;
-      margin: 10px;
-      animation: spin 3s linear infinite;
-      display: inline-block;
-    }
-
-    @keyframes spin {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-
-    .box {
-      background: #fff;
-      border: 3px inset #808080;
-      padding: 15px;
-      margin: 18px auto;
-      max-width: 600px;
-    }
-
-    .buttons button {
-      font-family: Tahoma, sans-serif;
-      font-weight: bold;
-      margin: 6px;
-      padding: 10px 16px;
-      background: #c0c0c0;
-      border: 3px outset #fff;
-      cursor: pointer;
-    }
-
-    .buttons button:active {
-      border: 3px inset #808080;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 13px;
     }
 
     .counter {
-      display: inline-block;
-      background: #000;
-      color: red;
-      font-family: monospace;
-      font-size: 26px;
-      padding: 6px 12px;
-      letter-spacing: 4px;
-      border: 3px inset #fff;
+      font-size: clamp(90px, 18vw, 220px);
+      font-weight: 800;
+      letter-spacing: -0.08em;
+      line-height: 0.9;
     }
 
-    .status {
-      font-family: monospace;
-      background: #000;
-      color: #00ff00;
-      padding: 12px;
-      text-align: left;
-      max-width: 520px;
-      margin: 20px auto;
-      border: 2px solid #00ff00;
+    h1 {
+      margin: 18px 0 12px;
+
+      font-size: clamp(28px, 5vw, 58px);
+      font-weight: 700;
+
+      letter-spacing: -0.05em;
     }
 
-    .footer {
-      font-size: 12px;
-      background: #808080;
-      padding: 10px;
-      border-top: 2px inset #fff;
-      text-align: center;
+    p {
+      margin: 0;
+
+      color: var(--muted);
+
+      font-size: 18px;
+      line-height: 1.6;
     }
 
-    a {
-      color: blue;
-      font-weight: bold;
+    footer {
+      position: fixed;
+      bottom: 24px;
+
+      color: var(--muted);
+
+      font-size: 13px;
+      letter-spacing: 0.04em;
+    }
+
+    .fade-in {
+      animation: fadeIn 1.2s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
   </style>
 </head>
 <body>
 
-  <div class="page">
-    <div class="titlebar">
-      <span>leonmol.nl - Internet Explorer Edition</span>
-      <div class="window-buttons">
-        <span>_</span><span>□</span><span>X</span>
-      </div>
-    </div>
+  <main class="fade-in">
+    <div class="label">live statistiek</div>
 
-    <div class="content">
-      <marquee>
-        *** WELKOM INTERNET SURFER *** DEZE WEBSITE IS GEOPTIMALISEERD VOOR 1024x768 ***
-      </marquee>
+    <div class="counter" id="counter">...</div>
 
-      <h1>🔥 WELKOM OP LEONMOL.NL 🔥</h1>
+    <h1>bezoekers teleurgesteld</h1>
 
-      <div class="construction">🚧</div>
-      <p><b>Deze website is permanent onder constructie.</b></p>
+    <p id="subtitle"></p>
+  </main>
 
-      <div class="box">
-        <p>U bent bezoeker nummer sinds 1998:</p>
-        <div class="counter" id="counter">000006</div>
-        <p><small>Deze teller is relatief betrouwbaar.</small></p>
-      </div>
+  <footer>
+    leonmol.nl
+  </footer>
 
-      <div class="buttons">
-        <button onclick="doSomething()">ENTER</button>
-        <button onclick="fakeGuestbook()">GASTENBOEK</button>
-        <button onclick="downloadRam()">DOWNLOAD MEER RAM</button>
-        <button onclick="contact()">CONTACT</button>
-      </div>
+  <script type="module">
+    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
 
-      <div class="status">
-        <div>&gt; systeemstatus leonmol.nl</div>
-        <div>&gt; koffie: operationeel</div>
-        <div>&gt; productiviteit: wisselvallig</div>
-        <div>&gt; website: draait tegen beter weten in</div>
-        <div>&gt; laatste update: een tijdje geleden alweer</div>
-      </div>
+    const supabaseUrl = 'https://uxzcmbxabhgspixfazgi.supabase.co'
+    const supabaseKey = 'sb_publishable_Cchy9o_ZDiTdd00IYK_cdQ_U2W2FfFu'
 
-      <div class="box">
-        <p>
-          <img alt="new" src="https://media.giphy.com/media/l0HlNaQ6gWfllcjDO/giphy.gif" width="80">
-        </p>
-        <p><b>NIEUW:</b> deze pagina bevat nu bijna inhoud.</p>
-      </div>
+    const supabase = createClient(supabaseUrl, supabaseKey)
 
-      <p>
-        <a href="#" onclick="alert('Geheime pagina niet gevonden. Heel geheim dus.'); return false;">
-          Klik hier voor de geheime pagina
-        </a>
-      </p>
-    </div>
+    const subtitles = [
+      'en toch blijf je kijken',
+      'de verwachtingen waren te hoog',
+      'dit was inderdaad de hele website',
+      'u krijgt geen geld terug',
+      'mogelijk wordt dit later erger',
+      'bedankt voor uw bijdrage',
+      'geen cookies. wel teleurstelling.',
+      'ook mobiel middelmatig'
+    ]
 
-    <div class="footer">
-      © sinds ongeveer een tijdje · Best viewed on a beige computer · Geen cookies, wel kruimels
-    </div>
-  </div>
+    document.getElementById('subtitle').textContent =
+      subtitles[Math.floor(Math.random() * subtitles.length)]
 
-  <script>
-    const messages = [
-      "U heeft zojuist op ENTER gedrukt. Dapper.",
-      "Toegang geweigerd. Niet persoonlijk bedoeld.",
-      "Welkom in het gedeelte dat nog niet bestaat.",
-      "Deze knop was vooral decoratief.",
-      "Even laden... grapje."
-    ];
+    async function updateCounter() {
 
-    function doSomething() {
-      alert(messages[Math.floor(Math.random() * messages.length)]);
+      const { data } = await supabase
+        .from('counter')
+        .select('value')
+        .eq('id', 1)
+        .single()
+
+      let value = data.value + 1
+
+      await supabase
+        .from('counter')
+        .update({ value })
+        .eq('id', 1)
+
+      document.getElementById('counter').textContent =
+        value.toLocaleString('nl-NL')
     }
 
-    function fakeGuestbook() {
-      alert("Het gastenboek is vol. Er heeft nog niemand iets geschreven.");
-    }
-
-    function downloadRam() {
-      alert("Download gestart: extra_weekend.exe");
-    }
-
-    function contact() {
-      alert("Contactformulier tijdelijk kapot sinds 1998.");
-    }
-
-    const counter = document.getElementById("counter");
-    const randomVisitors = 00006 + Math.floor(Math.random() * 9);
-    counter.textContent = String(randomVisitors).padStart(6, "0");
+    updateCounter()
   </script>
 
 </body>
