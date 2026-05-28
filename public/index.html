@@ -133,13 +133,12 @@
 
     async function updateCounter() {
       const counterElement = document.getElementById('counter')
+      const hasCountedBefore = localStorage.getItem('counter-counted') === '1'
+      const requestMethod = hasCountedBefore ? 'GET' : 'POST'
 
       try {
         const response = await fetch('counter.php', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
+          method: requestMethod,
         })
 
         if (!response.ok) {
@@ -147,6 +146,10 @@
         }
 
         const { value } = await response.json()
+
+        if (!hasCountedBefore) {
+          localStorage.setItem('counter-counted', '1')
+        }
 
         counterElement.textContent = Number(value).toLocaleString('nl-NL')
       } catch {
