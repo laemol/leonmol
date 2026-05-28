@@ -117,14 +117,7 @@
     <p id="subtitle"></p>
   </main>
 
-  <script type="module">
-    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
-
-    const supabaseUrl = 'https://uxzcmbxabhgspixfazgi.supabase.co'
-    const supabaseKey = 'sb_publishable_Cchy9o_ZDiTdd00IYK_cdQ_U2W2FfFu'
-
-    const supabase = createClient(supabaseUrl, supabaseKey)
-
+  <script>
     const subtitles = [
       'en toch blijft u kijken',
       'de verwachtingen waren te hoog',
@@ -139,22 +132,26 @@
       subtitles[Math.floor(Math.random() * subtitles.length)]
 
     async function updateCounter() {
+      const counterElement = document.getElementById('counter')
 
-      const { data } = await supabase
-        .from('counter')
-        .select('value')
-        .eq('id', 1)
-        .single()
+      try {
+        const response = await fetch('counter.php', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        })
 
-      let value = data.value + 1
+        if (!response.ok) {
+          throw new Error('Counter kon niet worden bijgewerkt')
+        }
 
-      await supabase
-        .from('counter')
-        .update({ value })
-        .eq('id', 1)
+        const { value } = await response.json()
 
-      document.getElementById('counter').textContent =
-        value.toLocaleString('nl-NL')
+        counterElement.textContent = Number(value).toLocaleString('nl-NL')
+      } catch {
+        counterElement.textContent = 'n.v.t.'
+      }
     }
 
     updateCounter()
